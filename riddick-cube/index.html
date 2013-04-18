@@ -1,0 +1,96 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Riddick Cube</title>
+	<meta name="description" content="Riddick game cube navigation experiment with HTML &amp; CSS.">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+	<header>
+		<h1>Riddick Cube</h1>
+		<p>HTML &amp; CSS experiment</p>
+		<a href="http://atari.com/buy-games/fps/chronicles-riddick-assault-dark-athena" class="buy" id="buy">
+			Buy the game!
+		</a>
+		<a href="http://twitter.com/Darsain" class="follow" id="follow">
+			<small>by</small> Darsain
+		</a>
+	</header>
+
+	<button class="sound" data-action="mute">
+		Sound <i class="icon-volume-up"></i>
+	</button>
+
+	<section id="container" class="container">
+		<div class="loading">Loading cube ...</div>
+
+		<div id="cube" class="cube"></div>
+
+		<button id="back" class="back" data-action="back"><i class="icon-angle-left"></i> Back</button>
+		<button id="home" class="home" data-action="home"><i class="icon-home"></i> Home</button>
+
+		<div id="controls" class="controls">
+			<button data-action="pop">Pop cubelets</button>
+			<button data-action="popMore">Pop more</button>
+			<button data-action="popAlot">Pop alot</button>
+		</div>
+	</section>
+
+	<section id="warning" class="warning">
+		<div class="message">
+			<p>Your browser doesn't support one or more features required for viewing this experiment.</p>
+			<p>Turn that dinosaur off, and install the latest version of one of a browsers listed below.</p>
+			<p>As of April 2013, the best browser for viewing this experiment is <a href="http://www.google.com/chrome">Google Chrome</a>.</p>
+		</div>
+
+		<ul class="browsers">
+			<li class="chrome"><a href="http://www.google.com/chrome">Chrome</a></li>
+			<li class="firefox"><a href="http://www.mozilla.org/firefox/">Firefox</a></li>
+		</ul>
+	</section>
+
+	<section id="support" class="support">
+		<div class="plane">
+			<h2>Browser support</h2>
+
+			<ul class="list">
+				<li data-check="csstransforms3d">CSS 3D Transforms</li>
+				<li data-check="csstransitions">CSS Transitions</li>
+				<li data-check="audio">Audio/OGG</li>
+				<li data-check="fontface">Font Face</li>
+				<li data-check="textshadow">Text shadow</li>
+				<li data-check="boxshadow">Box shadow</li>
+				<li data-check="rgba">RGBA colors</li>
+			</ul>
+		</div>
+	</section>
+
+	<footer class="copyright">
+		Riddick game was developed by <a href="http://www.starbreeze.com/">Starbreeze Studios</a>, and published by <a href="http://www.atari.com/">Atari</a>. Creator of this experiment (<a href="http://twitter.com/Darsain">@Darsain</a>) has no affiliation to either of them. Please don't sue me :)
+	</footer>
+
+	<!-- Scripts -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery.js"><\/script>')</script>
+	<script src="js/vendor/plugins.js"></script>
+	<script src="js/rdcube.js"></script>
+	<script src="js/main.js"></script>
+
+	<!-- Google Analytics -->
+	<script>
+		var _gaq=[['_setAccount','UA-838758-7'],['_trackPageview']];
+		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+</body>
+</html>

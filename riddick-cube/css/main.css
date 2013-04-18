@@ -1,0 +1,191 @@
+@font-face {
+	font-family: 'Orbitron';
+	src: url('../font/orbitron-medium-webfont.eot');
+	src: url('../font/orbitron-medium-webfont.eot?#iefix') format('embedded-opentype'),
+		url('../font/orbitron-medium-webfont.woff') format('woff'),
+		url('../font/orbitron-medium-webfont.ttf') format('truetype'),
+		url('../font/orbitron-medium-webfont.svg#Orbitron') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Orbitron';
+	src: url('../font/orbitron-black-webfont.eot');
+	src: url('../font/orbitron-black-webfont.eot?#iefix') format('embedded-opentype'),
+		url('../font/orbitron-black-webfont.woff') format('woff'),
+		url('../font/orbitron-black-webfont.ttf') format('truetype'),
+		url('../font/orbitron-black-webfont.svg#Orbitron') format('svg');
+	font-weight: bold;
+	font-style: bold;
+}
+
+/* ==========================================================================
+   Primary styles
+   ========================================================================== */
+
+html, body { height: 100%; }
+body { color: #fff; font-family: Orbitron, monospace; font-size: 12px; line-height: 1.6; letter-spacing: 1px;
+	background: url('../img/background.jpg') no-repeat center center fixed;
+	background-size: cover;
+	background-color: #2e3035;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/background.jpg', sizingMethod='scale');
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/background.jpg', sizingMethod='scale')";
+}
+
+i { font-size: 14px; }
+
+a { color: #9AC9B0; }
+a:hover { color: #fff; }
+
+header { position: fixed; left: 50%; top: 20px; width: 310px; height: 76px; margin: 0 0 0 -160px; text-align: center; text-shadow: 1px 1px 0 #000;
+	background: url('../img/pagetitle.png') no-repeat center center;
+}
+header h1 { margin: 0; padding: 22px 0 0 0; font-size: 20px; line-height: 1; letter-spacing: 1px; font-weight: bold; text-transform: uppercase; }
+header p { margin: 0; padding: 0 0 0 0; font-size: 0.9em; opacity: 0.5; }
+
+header .buy,
+header .follow { position: absolute; top: 17px; left: 287px; width: 160px; height: 50px; padding: 0 0 0 90px;
+	color: #ccc; text-decoration: none; font-size: 14px; line-height: 50px; text-align: left;
+	background: url('../img/header_buttons.png') no-repeat -250px 0; overflow: hidden;
+}
+header .buy:hover,
+header .follow:hover { color: #fff; }
+
+header .buy small,
+header .follow small { color: #888; }
+header .follow { left: auto; right: 287px; padding: 0 90px 0 0; text-align: right; background-image: url('../img/header_buttons.png'); background-position: 0 0; }
+
+/* Cube styles */
+.container { display: none; position: fixed; top: 50%; left: 50%; width: 600px; height: 600px; margin: -300px 0 0 -300px; z-index: 2; perspective: 800px; }
+.container:before { content: ""; display: block; position: absolute; width: 0; height: 0; top: 50%; left: 50%; box-shadow: 0 0 60px 310px rgba(0,0,0,1); z-index: 2; }
+.container .loading { position: absolute; left: 0; top: 0; width: 100%; font-size: 24px; line-height: 600px; text-align: center; z-index: 2; }
+.cube { position: absolute; width: 100%; height: 100%; font-size: 16px; cursor: default; transform-style: preserve-3d; transform: translateZ( -300px ); z-index: 10; }
+.cube .side { position: absolute; width: 100%; height: 100%; margin: 0; padding: 0; color: #fff; text-shadow: 1px 1px 0 #222;
+	transform-style: preserve-3d;
+	-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+}
+.cube .side.transition { transition: transform 700ms cubic-bezier(0.000, 0.600, 0.300, 1.650); }
+
+.cube .side.front  { transform: rotateY(  0deg) translateZ(300px); }
+.cube .side.back   { transform: rotateX(180deg) translateZ(300px); }
+.cube .side.left   { transform: rotateY(-90deg) translateZ(300px); }
+.cube .side.right  { transform: rotateY( 90deg) translateZ(300px); }
+.cube .side.top    { transform: rotateX( 90deg) translateZ(300px); }
+.cube .side.bottom { transform: rotateX(-90deg) translateZ(300px); }
+
+.cube .side .cubelet { position: absolute; display: block; width: 5%; height: 5%; margin: 0; padding: 0; text-align: center; line-height: 30px;
+	background-image: url('../img/side.jpg'); background-color: #191c1e; background-repeat: no-repeat;
+	transform-style: preserve-3d; backface-visibility: hidden;
+	transition: transform 300ms;
+}
+
+.cube .side .cubelet .wall { display: none; position: absolute; top: 0; left: 0; width: 30px; height: 0; transform-origin: 50% 0;
+	background: #111; /*url('../img/cubelet_side.jpg') repeat-y left center*/
+}
+.cube.nowalls .side .cubelet .wall { display: none !important; }
+
+.cube .side .cubelet .wall.top    { transform: rotateX(-90deg); }
+.cube .side .cubelet .wall.bottom { top: 30px; transform: rotateX(-90deg); }
+.cube .side .cubelet .wall.left   { top: 15px; left: -15px; transform: rotateZ(90deg) rotateX(-90deg); }
+.cube .side .cubelet .wall.right  { top: 15px; left: 15px; transform: rotateZ(90deg) rotateX(-90deg); }
+
+.cube .side .cubelet:hover .wall { display: block; height: 30px; }
+.cube .side .cubelet:hover { transform: translateZ(30px); transition-duration: 50ms; }
+
+.cube .side a { text-decoration: none; color: #fff; }
+.cube .side a .cubelet { background-image: url('../img/side_link.jpg'); }
+.cube .side a:hover .cubelet .wall { display: block; height: 40px; }
+.cube .side a:hover .cubelet { transform: translateZ(40px); transition-duration: 50ms; }
+
+/*.cube .side a:active .cubelet .wall { display: none; }*/
+/*.cube .side a:active .cubelet { transform: translateZ(-10px); }*/
+
+.cube .side .cubelet.pop .wall { display: block; height: 200px; }
+.cube .side .cubelet.pop { transform: translateZ(200px); transition-duration: 100ms; }
+
+/* Navigation */
+.container button { position: absolute; bottom: -70px; margin: 0 10px; padding: 10px 20px; color: #fff; font-size: 1.3em; text-align: center;
+	background: #222; background: rgba(255,255,255,.1); border-radius: 2px; border: 0; text-shadow: 1px 1px 0 #000; z-index: 2;
+}
+.container button:hover { background: #fff; color: #222; text-shadow: none; }
+.container .back { right: 50%; }
+.container .home { left: 50%; }
+
+.container .controls { position: absolute; bottom: -110px; width: 100%; text-align: center; }
+.container .controls button { position: static; margin: 0; padding: 7px 10px; font-size: 1em; }
+.container .controls { bottom: auto; left: 650px; top: 40%; width: auto; text-align: left; }
+.container .controls button { display: block; margin: 0 0 5px; white-space: nowrap; }
+
+/* Browser support panel */
+.support { width: 220px; position: fixed; top: 0; left: 0; bottom: 0; color: #eee; text-shadow: -1px 1px 0 rgba(0,0,0,1);
+	z-index: 1; perspective: 400px;
+	-webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+}
+.support .plane { position: absolute; top: 50%; margin-top: -210px; transform-style: preserve-3d; }
+
+.support h2 { height: 40px; margin: 0; padding: 0 0 0 15px; font-size: 1.2em; font-weight: normal; line-height: 40px; background: url('../img/checks.png') no-repeat left top; }
+
+.support .list { list-style: none; margin: 0; padding: 0; transform-style: preserve-3d; }
+.support .list li { margin: 0 0 1px 0; width: 200px; padding: 0 0 0 15px; line-height: 40px; background: url('../img/checks.png') no-repeat right -40px; }
+.support .list li.yes { color: #6fae6e; background-position: right -80px; }
+.support .list li.no { color: #c84349; background-position: right -120px; }
+
+.support h2,
+.support .list li { transition: transform .2s; transform-origin: 0% 50%; transition-timing-function: cubic-bezier(.2,.0,.58,1); transform: rotateY(25deg); }
+.support h2.straight,
+.support .list li.straight { transform: rotateY(2deg); }
+
+/* Browser support warning */
+.warning { display: none; width: 600px; margin: 0 auto; padding-top: 200px; text-shadow: 1px 1px 0 #000; }
+.warning .message { padding: 100px 50px 30px 50px; color: #fff; background: url('../img/warning_bg.png') no-repeat center top; }
+.warning .browsers { width: 630px; list-style: none; margin: 20px 0 0 -30px; padding: 0; }
+.warning .browsers li { display: block; float: left; width: 285px; height: 60px; margin: 0 0 0 30px; }
+.warning .browsers li a { display: block; height: 60px; line-height: 60px; text-decoration: none; text-align: center; font-size: 1.2em;
+	background: url('../img/browsers.png') no-repeat left top;
+}
+.warning .browsers li.chrome a { color: #72d472; }
+.warning .browsers li.firefox a { color: #eecf72; background-position: left -60px; }
+.warning .browsers li a:hover { color: #fff; }
+
+/* Sound mute toggle button */
+.sound { position: fixed; top: 0; right: 0; margin: 20px; padding: 5px 10px; color: #6fae6e; cursor: pointer; border: 0; background: transparent; }
+.sound i { display: inline-block; width: 20px; height: 20px; margin-left: 5px; font-size: 18px; text-align: left; vertical-align: middle; }
+.sound.off:hover,
+.sound:hover { color: #e4fae1; }
+.sound.off { color: #9f9f9f; }
+
+/* Footer */
+.copyright { position: fixed; bottom: 10px; width: 100%; font-size: 0.8em; text-align: center; text-shadow: 1px 1px 0 #000; color: #888; }
+
+/* No javascript */
+.no-js #container { display: none; }
+.no-js #warning { display: block; }
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/* Image replacement */
+.ir { background-color: transparent; border: 0; overflow: hidden; text-indent: -9999px; }
+.ir:before { content: ""; display: block; width: 0; height: 150%; }
+
+/* Hide from both screenreaders and browsers: h5bp.com/u */
+.hidden { display: none !important; visibility: hidden; }
+
+/* Hide only visually, but have it available for screenreaders: h5bp.com/v */
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+
+/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible { visibility: hidden; }
+
+/* Clearfix: contain floats */
+.clearfix:before,
+.clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
